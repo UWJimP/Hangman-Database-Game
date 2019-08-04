@@ -39,6 +39,8 @@ public class WordGameData {
 	 */
 	private Word myCurrentRevealedLetters;
 	
+	private int myID;
+	
 	/**
 	 * The current amount of wrong guesses.
 	 */
@@ -49,8 +51,8 @@ public class WordGameData {
 	 */
 	private boolean myGameOver;
 	
-	public WordGameData(String word) {
-		startNewGame(word);
+	public WordGameData(String word, int id) {
+		startNewGame(word, id);
 	}
 	
 	/**
@@ -58,12 +60,17 @@ public class WordGameData {
 	 * 
 	 * @param word The word for the new game.
 	 */
-	public void startNewGame(String word) {
+	public void startNewGame(String word, int id) {
 		myWord = word;
 		myGuessedLetter = new HashSet<Character>();
 		myWrong = 0;
 		myGameOver = false;
 		myCurrentRevealedLetters = new Word(myWord);
+		myID = id;
+	}
+	
+	public String getWord() {
+		return myWord;
 	}
 	
 	/**
@@ -73,6 +80,10 @@ public class WordGameData {
 	 */
 	public boolean isGameOver() {
 		return myGameOver;
+	}
+	
+	public int getID() {
+		return myID;
 	}
 	
 	/**
@@ -171,7 +182,7 @@ public class WordGameData {
 			boolean revealed = false;
 			
 			for(Letter check : letters) {
-				if(check.letter == theLetter) {
+				if(!check.isRevealed && check.letter == theLetter) {
 					check.isRevealed = true;
 					revealed = true;
 				}
