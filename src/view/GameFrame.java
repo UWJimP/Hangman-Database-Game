@@ -22,7 +22,7 @@ public class GameFrame extends JFrame {
 		super("Word Game");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		this.setUndecorated(true);
-		setVisible(true);
+		//this.setUndecorated(true);
+		//setVisible(true);
 	}
 }

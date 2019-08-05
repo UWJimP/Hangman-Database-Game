@@ -19,6 +19,8 @@ public class WordGameData {
 	private static final int ASCII_a = 97;
 	private static final int ASCII_z = 122;
 	
+	private static final int ASCII_DIF = 32;
+	
 	/**
 	 * The max amount of incorrect guesses a person can have.
 	 */
@@ -93,6 +95,9 @@ public class WordGameData {
 	 * @return If a suitable letter was guessed.
 	 */
 	public boolean guessLetter(char letter) {
+		if(letter >= 65 || letter <= 90) {
+			letter += ASCII_DIF;
+		}
 		if(!myGuessedLetter.contains(letter) && correctCharacter(letter)) {
 			myGuessedLetter.add(letter);
 			boolean found = myCurrentRevealedLetters.revealLetter(letter);
