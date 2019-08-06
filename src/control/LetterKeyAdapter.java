@@ -45,10 +45,9 @@ public class LetterKeyAdapter extends KeyAdapter {
 	
 	@Override
 	public void keyPressed(final KeyEvent event) {
-		//System.out.println(myLetter);
-		if(event.getKeyCode() == myKeyEvent && WordGameEngine.getEngine() != null) {
-			System.out.println(myLetter);
-			//WordGameEngine.getEngine().guessLetter(myLetter);
+		if(event.getKeyCode() == myKeyEvent && WordGameEngine.getEngine() != null
+				&& !WordGameEngine.getEngine().isGameOver()) {
+			WordGameEngine.getEngine().guessLetter(myLetter);
 			myButton.setEnabled(false);
 		}
 	}

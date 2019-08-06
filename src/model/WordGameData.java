@@ -75,6 +75,10 @@ public class WordGameData {
 		return myWord;
 	}
 	
+	public int getWrong() {
+		return myWrong;
+	}
+	
 	/**
 	 * Tells if the game is over.
 	 * 
@@ -142,6 +146,11 @@ public class WordGameData {
 	 */
 	public boolean isCompleted() {
 		return myCurrentRevealedLetters.isCompletelyRevealed();
+	}
+	
+	@Override
+	public String toString() {
+		return new String(myCurrentRevealedLetters.currentRevealedLetters());
 	}
 	
 	private boolean correctCharacter(char letter) {

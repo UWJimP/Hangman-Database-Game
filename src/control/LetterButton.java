@@ -16,6 +16,11 @@ import model.WordGameEngine;
 public class LetterButton extends JButton {
 
 	/**
+	 * Serial ID.
+	 */
+	private static final long serialVersionUID = 80717274578833188L;
+	
+	/**
 	 * The letter the Button represents.
 	 */
 	private char myLetter;
@@ -24,10 +29,14 @@ public class LetterButton extends JButton {
 		super(letter + "");
 		myLetter = letter;
 		this.setEnabled(true);
-		//this.setText(letter + "");
 		setUp();
 	}
 
+	/**
+	 * Get the letter of the button.
+	 * 
+	 * @return The letter.
+	 */
 	public char getLetter() {
 		return myLetter;
 	}
@@ -38,11 +47,10 @@ public class LetterButton extends JButton {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				WordGameEngine engine = WordGameEngine.getEngine(); 
-				if(engine != null && engine.isGameOver()) {
+				if(engine != null && !engine.isGameOver()) {
 					engine.guessLetter(myLetter);
 					setEnabled(false);
 				}
-				setEnabled(false);
 			}
 		});
 	}

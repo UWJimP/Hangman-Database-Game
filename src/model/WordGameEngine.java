@@ -16,12 +16,24 @@ import org.json.simple.JSONObject;
  */
 public class WordGameEngine extends Observable {
 
+	/**
+	 * The game's word data.
+	 */
 	private static WordGameData myData;
 	
+	/**
+	 * The game engine.
+	 */
 	private static WordGameEngine myEngine;
 	
+	/**
+	 * The JSONObject.
+	 */
 	private static JSONObject myDataBaseWord;
 	
+	/**
+	 * The current words used.
+	 */
 	private static Set<String> myCurrentWords;
 	
 	private WordGameEngine() {
@@ -61,7 +73,6 @@ public class WordGameEngine extends Observable {
 		}
 		setChanged();
 		notifyObservers(myData);//Might need to change
-		
 	}
 	
 	/**
@@ -77,9 +88,9 @@ public class WordGameEngine extends Observable {
 		}
 		if(suitableGuess) {
 			setChanged();
-			notifyObservers(myData);//Might need to change
+			notifyObservers(myData);
 			if(myData.isGameOver()) {
-				Map<String, Object> values = new HashMap<>();
+				Map<String, Object> values = new HashMap<String, Object>();
 				String success = "false";
 				if(myData.isCompleted()) {
 					success = "true";
@@ -89,6 +100,7 @@ public class WordGameEngine extends Observable {
 				JSONObject json = new JSONObject(values);
 				WordGameDatabase.postMethod("word", json);
 			}
+			
 		}
 		return suitableGuess;
 	}

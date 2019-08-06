@@ -41,13 +41,20 @@ public class WordGameDatabase {
 	 */
 	private static final int NUM_WORDS = 4287;
 	
+	/**
+	 * The number of errors.
+	 */
 	private static int NUM_ERROR = 0;
 	
 	private WordGameDatabase() {
 		
 	}
 	
-
+	/**
+	 * Get method used to get a word from the database.
+	 * 
+	 * @return Returns the JSONObject from the database.
+	 */
 	public static JSONObject getMethod() {
 		Scanner scanner = null;
 		JSONObject json = null;
@@ -93,6 +100,13 @@ public class WordGameDatabase {
 		return json;
 	}
 	
+	/**
+	 * Post method used to send info to the heroku database.
+	 * 
+	 * @param path The path
+	 * @param post The JSON Object to be posted.
+	 * @return A JSON Object response.
+	 */
 	public static JSONObject postMethod(String path, JSONObject post) {
 		String response = null;
 		JSONObject json = null;
@@ -116,7 +130,7 @@ public class WordGameDatabase {
 				sb.append((char)c);
 			}
 			response = sb.toString();
-			System.out.println(response);
+
 			JSONParser parser = new JSONParser();
 			json = (JSONObject) parser.parse(response);
 			in.close();
@@ -133,14 +147,7 @@ public class WordGameDatabase {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		return json;
-	}
-	
-	public static void main(String[] args) {
-		JSONObject json = getMethod();
-		System.out.println(json.toString());
-		int value = (int) ((long) json.get("id"));
-		int test = (int) value;
-		System.out.println(test);
 	}
 }
